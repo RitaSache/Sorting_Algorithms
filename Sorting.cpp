@@ -3,31 +3,39 @@
 using namespace std;
 
 Sorting::Sorting(int maxNumber){
-	myArray = new double[maxNumber];
+	myBubbleArray = new double[maxNumber];
 	for (int i = 0; i < maxNumber; i++) {
-		myArray[i] = 0.0;
+		myBubbleArray[i] = 0.0;
+	}
+	myMergeArray = new double[maxNumber];
+	for (int i = 0; i < maxNumber; i++) {
+		myMergeArray[i] = 0.0;
 	}
 	max = maxNumber;
 }
 
 Sorting::~Sorting(){
-	delete [] myArray;
+	delete [] myBubbleArray;
+	delete [] myMergeArray;
 }
-void Sorting::bubbleSort(double myArray[]){
-	for(int i=0;i<10;++i){
-		int temp = 0;
-		for(int j = i; j<9;++j){
+
+void Sorting::swap(double *p, double *g){
+	double temp = *p;
+	*p = *g;
+	*g = temp;
+}
+void Sorting::bubbleSort(double myArray[], int n){
+	for(int i=0;i<n-1;i++){
+		for(int j = 0; j<n-i-1; j++){
 			if(myArray[j]>myArray[j+1]){
-				temp = myArray[j+1];
-				myArray[j+1]=myArray[j];
-				myArray[j]=temp;
+				swap(&myArray[j], &myArray[j+1]);
 			}
 		}
 	}
 }
-void Sorting::merge(double a[], int lo, int hi){
-	int i,j,k,m = hi-lo+1;
-	int n = hi-lo+1;
+void Sorting::merge(double a[], double lo, double hi){
+	double m = hi-lo+1;
+	int n,k,i,j = (int)hi-lo+1;
 	double *b = new double[n];
 	k=0;
 	m=(lo+hi)/2;
@@ -46,9 +54,9 @@ void Sorting::merge(double a[], int lo, int hi){
 		}
 	}	
 }
-void Sorting::mergeSort(double a[], int lo, int hi){
+void Sorting::mergeSort(double a[], double lo, double hi){
 	if(lo<hi){
-		int m = (lo+hi)/2;
+		double m = (lo+hi)/2;
 		mergeSort(a, lo, m);
 		mergeSort(a, m+1, hi);
 		merge(a,lo,hi);
