@@ -12,11 +12,18 @@ Sorting::Sorting(int maxNumber){
 		myMergeArray[i] = 0.0;
 	}
 	max = maxNumber;
+	myQuickArray = new double[maxNumber];
+	for (int i = 0; i < maxNumber; i++) {
+		myQuickArray[i] = 0.0;
+	}
+	max = maxNumber;
+
 }
 
 Sorting::~Sorting(){
 	delete [] myBubbleArray;
 	delete [] myMergeArray;
+	delete [] myQuickArray;
 }
 
 void Sorting::swap(double *p, double *g){
@@ -33,32 +40,77 @@ void Sorting::bubbleSort(double myArray[], int n){
 		}
 	}
 }
-void Sorting::merge(double a[], double lo, double hi){
-	double m = hi-lo+1;
-	int n,k,i,j = (int)hi-lo+1;
-	double *b = new double[n];
-	k=0;
-	m=(lo+hi)/2;
-	for(i=lo;i<=m;i++){
-		b[k++]=a[i];}
-	for(j=hi;j>=m+1;j--){
-		b[k++]=a[j];
-	}
-	i=0; j=n-1; k=lo;
-	while(i<=j){
-		if(b[i]<=b[j]){
-			a[k++]=b[i++];
-		}
-		else{
-			a[k++]=b[j--];
-		}
-	}	
+void Sorting::merge(double a[], int lo, int hi, int g)
+{
+    int i, j, k;
+    int size1 = hi - lo + 1;
+    int size2 =  g - hi; 
+    int Left[size1], Right[size2]; 
+    for (i = 0; i < size1; i++)
+        Left[i] = a[lo + i];
+    for (j = 0; j < size2; j++)
+        Right[j] = a[hi + 1+ j];
+    i = 0; 
+    j = 0; 
+    k = lo; 
+    while (i < size1 && j < size2)
+    {
+        if (Left[i] <= Right[j])
+        {
+            a[k] = Left[i];
+            i++;
+        }
+        else
+        {
+            a[k] = Right[j];
+            j++;
+        }
+        k++;
+    }
+    while (i < size1)
+    {
+        a[k] = Left[i];
+        i++;
+        k++;
+    }
+    while (j < size2)
+    {
+        a[k] = Right[j];
+        j++;
+        k++;
+    }
 }
-void Sorting::mergeSort(double a[], double lo, double hi){
-	if(lo<hi){
-		double m = (lo+hi)/2;
-		mergeSort(a, lo, m);
-		mergeSort(a, m+1, hi);
-		merge(a,lo,hi);
-	}
+void Sorting::mergeSort(double a[], int lo, int g)
+{
+    if (lo < g)
+    {
+        int m = lo+(g-lo)/2;
+        mergeSort(a, lo, m);
+        mergeSort(a, m+1, g);
+        merge(a, lo, m, g);
+    }
+}
+int Sorting::separate(double a[], int lo, int hi)
+{
+    int last = a[hi];
+    int i = (lo - 1);
+    for (int j = lo; j <= hi- 1; j++)
+    {
+        if (a[j] <= last)
+        {
+            i++;    
+            swap(&a[i], &a[j]);
+        }
+    }
+    swap(&a[i + 1], &a[hi]);
+    return (i + 1);
+}
+void Sorting::quickSort(double a[], int lo, int hi)
+{
+    if (lo < hi)
+    {
+        int sep = separate(a, lo, hi);
+        quickSort(a, lo, sep - 1);
+        quickSort(a, sep + 1, hi);
+    }
 }
