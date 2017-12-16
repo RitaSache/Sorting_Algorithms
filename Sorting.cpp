@@ -7,7 +7,7 @@
 #include <iostream>
 #include "Sorting.h"
 using namespace std;
-
+//Sorting constructor makes new arrays
 Sorting::Sorting(int maxNumber){
 	myBubbleArray = new double[maxNumber];
 	for (int i = 0; i < maxNumber; i++) {
@@ -24,18 +24,19 @@ Sorting::Sorting(int maxNumber){
 	max = maxNumber;
 
 }
-
+//Sorting destructor
 Sorting::~Sorting(){
 	delete [] myBubbleArray;
 	delete [] myMergeArray;
 	delete [] myQuickArray;
 }
-
+//swaps two values
 void Sorting::swap(double *p, double *g){
 	double temp = *p;
 	*p = *g;
 	*g = temp;
 }
+//bubble sorts an array
 void Sorting::bubbleSort(double myArray[], int n){
 	for(int i=0;i<n-1;i++){
 		for(int j = 0; j<n-i-1; j++){
@@ -45,6 +46,7 @@ void Sorting::bubbleSort(double myArray[], int n){
 		}
 	}
 }
+//merges arrays
 void Sorting::merge(double a[], int lo, int hi, int g)
 {
     int i, j, k;
@@ -85,6 +87,7 @@ void Sorting::merge(double a[], int lo, int hi, int g)
         k++;
     }
 }
+//merge sorts an array
 void Sorting::mergeSort(double a[], int lo, int g)
 {
     if (lo < g)
@@ -95,6 +98,7 @@ void Sorting::mergeSort(double a[], int lo, int g)
         merge(a, lo, m, g);
     }
 }
+//separates an array
 int Sorting::separate(double a[], int lo, int hi)
 {
     int last = a[hi];
@@ -110,6 +114,7 @@ int Sorting::separate(double a[], int lo, int hi)
     swap(&a[i + 1], &a[hi]);
     return (i + 1);
 }
+//quick sorts an array
 void Sorting::quickSort(double a[], int lo, int hi)
 {
     if (lo < hi)

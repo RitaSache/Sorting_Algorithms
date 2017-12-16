@@ -1,3 +1,10 @@
+
+//Rita (Eteri) Sachechelashvili
+//1928162
+//sache100@mail.chapman.edu
+//CPSC-350-02
+//Assignment 6
+//purpose of this file is to serve as the main file for the program.
 #include <iostream>
 #include <fstream>
 #include "Sorting.h"
@@ -7,7 +14,7 @@
 #include <sstream>
 #include <string>
 using namespace std;
-
+//takes in a file, reads values into arrays, and sorts them
 int main(int argc, char **argv){
 	ifstream inputFile;
 	inputFile.open(argv[1]);
@@ -33,42 +40,26 @@ int main(int argc, char **argv){
 	ostringstream b;
 	ostringstream m;
 	ostringstream q;
-	//srand (time(NULL));
-	/*for(int i =0 ; i<500000; i++){
-		s.myBubbleArray[i] = rand();
-		s.myMergeArray[i] = rand();
-		s.myQuickArray[i] = rand();
-	}*/
-	int n = sizeof(s.myMergeArray)/sizeof(s.myMergeArray[0]);
-	cout << "size of myMergeArray is " << sizeof(s.myMergeArray) << endl;
-	cout << "size of myMergeArray[0] is " << sizeof(s.myMergeArray[0]) << endl;
-
+	
 	int startTime = time(NULL);
 	s.bubbleSort(s.myBubbleArray, numberOfValuesToSort);
 	int endTime = time(NULL);
 	b << "BubbleSort: start time: " << startTime << ", end time: " << endTime << endl;
 	cout << b.str();
-	//500,000 nums took 23 minutes to sort 
 
 	int startMergeTime = time(NULL);
 	s.mergeSort(s.myMergeArray, 0, numberOfValuesToSort);
 	int endMergeTime = time(NULL);
 	m << "MergeSort: start time: " << startMergeTime << ", end time: " << endMergeTime << endl;
 	cout << m.str();
-	//500,000 nums took 1 second to sort
+
 	int startQuickTime = time(NULL);
 	s.quickSort(s.myQuickArray, 0, numberOfValuesToSort);
 	int endQuickTime = time(NULL);
 	q << "QuickSort: start time: " << startQuickTime << ", end time: " << endQuickTime << endl;
 	cout << q.str();
-	//takes 0 seconds
 	return 0;
 }
-
-//for 500,000 nums 
-//BubbleSort: start time: 1512901189, end time: 1512902616
-//MergeSort: start time: 1512902616, end time: 1512902617
-//QuickSort: start time: 1512902617, end time: 1512902617
 
 
 

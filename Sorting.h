@@ -1,3 +1,10 @@
+//Rita (Eteri) Sachechelashvili
+//1928162
+//sache100@mail.chapman.edu
+//CPSC-350-02
+//Assignment 6
+//purpose of this file is to serve as the h file for the program.
+
 #include <iostream>
 
 using namespace std;
