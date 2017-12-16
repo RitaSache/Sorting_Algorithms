@@ -1,3 +1,9 @@
+//Rita (Eteri) Sachechelashvili
+//1928162
+//sache100@mail.chapman.edu
+//CPSC-350-02
+//Assignment 6
+//purpose of this file is to serve as the cpp file for the program.
 #include <iostream>
 #include "Sorting.h"
 using namespace std;
@@ -11,7 +17,6 @@ Sorting::Sorting(int maxNumber){
 	for (int i = 0; i < maxNumber; i++) {
 		myMergeArray[i] = 0.0;
 	}
-	max = maxNumber;
 	myQuickArray = new double[maxNumber];
 	for (int i = 0; i < maxNumber; i++) {
 		myQuickArray[i] = 0.0;

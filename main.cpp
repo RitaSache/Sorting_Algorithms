@@ -39,6 +39,10 @@ int main(int argc, char **argv){
 		s.myMergeArray[i] = rand();
 		s.myQuickArray[i] = rand();
 	}*/
+	int n = sizeof(s.myMergeArray)/sizeof(s.myMergeArray[0]);
+	cout << "size of myMergeArray is " << sizeof(s.myMergeArray) << endl;
+	cout << "size of myMergeArray[0] is " << sizeof(s.myMergeArray[0]) << endl;
+
 	int startTime = time(NULL);
 	s.bubbleSort(s.myBubbleArray, numberOfValuesToSort);
 	int endTime = time(NULL);
